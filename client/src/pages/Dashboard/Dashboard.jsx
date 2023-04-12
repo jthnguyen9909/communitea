@@ -20,6 +20,7 @@ const { Content } = Layout;
 export default function Dashboard() {
   const { loading, data } = useQuery(QUERY_ME);
   const userData = data?.me || {};
+  console.log("userdata", userData);
 
   const welcomer = `Welcome back ${userData.full_name}!`;
   // console.log(userData)

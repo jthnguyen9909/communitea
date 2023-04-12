@@ -1,5 +1,3 @@
-/* eslint-disable react/jsx-no-target-blank */
-/* eslint-disable jsx-a11y/alt-text */
 import { useState, useEffect } from "react";
 import { useLocation, useParams } from "react-router-dom";
 import FooterComponent from "../../Components/footer/footer";
@@ -8,10 +6,10 @@ import RecentReviewsContainer from "../../Components/recentReviews/recentReviews
 import { StarOutlined } from "@ant-design/icons";
 import style from "./singleStore.module.css";
 import { useQuery, useMutation } from "@apollo/client";
-import { GET_STORE } from "../../utils/queries";
+
+import { GET_STORE, QUERY_ME } from "../../utils/queries";
 import { ADD_STORE, FAV_STORE, ADD_REVIEW } from "../../utils/mutations";
 import { Button } from "antd";
-// import ReviewForm from "../../Components/reviewForm/reviewForm.jsx";
 
 export default function SingleStore() {
   const storeId = useParams();
@@ -27,9 +25,13 @@ export default function SingleStore() {
   const [storeData, setStoreData] = useState({});
   const [dbData, setDbData] = useState({});
 
-  const { loading, data } = useQuery(GET_STORE, {
+  const { loading: loading1, data: data1 } = useQuery(GET_STORE, {
     variables: { ...storeId },
   });
+
+  const [loading: loading2, data: data2] = useQuery(QUERY_ME);
+  const userData = data2?.me || {};
+  console.log("user data", userData);
 
   // useEffect(() => {
   //   fetchYelpReviews();
@@ -39,10 +41,10 @@ export default function SingleStore() {
 
   // without the dependency array, document title rerenders after storedata loads
   useEffect(() => {
-    console.log(data);
+    // console.log(data);
     if (loading === false) {
       if (data) {
-        console.log(data);
+        // console.log(data);
         setStoreData(data.getStore);
       } else {
         fetchYelpReviews();
@@ -72,11 +74,11 @@ export default function SingleStore() {
       const { data: storeSaved } = await addStore({
         variables: { storeData: { ...dbData } },
       });
-      console.log(storeSaved.addStore._id);
+      // console.log(storeSaved.addStore._id);
       const { data: favData } = await favStore({
         variables: { store_id: storeSaved.addStore._id },
       });
-      console.log(favData);
+      // console.log(favData);
     } catch (err) {
       console.error(err);
     }
@@ -96,8 +98,9 @@ export default function SingleStore() {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
+    // console.log("userdata", userData);
     // console.log("formstate", formState);
-    const reviewInput = {
+    const reviewForm = {
       content: formState.content,
       score: formState.score,
       store_id: storeData.id,
@@ -106,13 +109,13 @@ export default function SingleStore() {
       username: "pagetest",
       full_name: "temp user",
     };
-    console.log("reviewinput", reviewInput);
+    // console.log("reviewForm", reviewForm);
 
     try {
       const { data: reviewData } = await addReview({
-        variables: { reviewEntry: { ...reviewInput } },
+        variables: { reviewEntry: { ...reviewForm } },
       });
-      console.log("reviewdata", reviewData);
+      // console.log("reviewdata", reviewData);
     } catch (err) {
       console.error(err);
     }
