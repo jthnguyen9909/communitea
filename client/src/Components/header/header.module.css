@@ -1,0 +1,29 @@
+.icon {
+  max-height: 25px;
+  max-width: 25px;
+  overflow: hidden;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+
+a:hover {
+  color: var(--secondary-brown);
+}
+
+.header {
+  font-family: "Itim", cursive;
+  background-color: #88DACB;
+  position: fixed;
+  z-index: 50;
+  font-size: 1.8rem;
+  width: 100vw;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 15px;
+  left: 0px;
+  z-index: 100;
+}

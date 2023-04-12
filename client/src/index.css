@@ -1,0 +1,45 @@
+@import url("https://fonts.googleapis.com/css2?family=Itim&display=swap");
+
+:root {
+  --primary-blue: #88dacb;
+  --primary-aqua: aquamarine;
+  --secondary-brown: #c0af82;
+  --primary-grey: #f1f1f1;
+
+  /* border radius */
+  --br-primary: 8px;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: "Itim", cursive;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  font-family: "Itim", cursive;
+}
+
+a,
+button {
+  cursor: pointer;
+}
+
+/* hotfix for antdesign components grabbed through chrome devtools */
+:where(.css-dev-only-do-not-override-1n7nwfa).ant-drawer .ant-drawer-title {
+  color: rgba(0, 0, 0, 0.88);
+  font-weight: 600;
+  font-size: 1.8rem;
+}
+
+:where(.css-dev-only-do-not-override-1n7nwfa).ant-card .ant-card-head-title {
+    font-size: 1.8rem;
+    font-weight: 500;
+}
