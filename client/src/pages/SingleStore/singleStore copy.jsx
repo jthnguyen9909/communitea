@@ -13,6 +13,7 @@ import { Button } from "antd";
 
 export default function SingleStore() {
   const storeId = useParams();
+  // console.log(storeId);
 
   const location = useLocation();
   const path = location.pathname.split("/");
@@ -24,12 +25,25 @@ export default function SingleStore() {
   const [storeData, setStoreData] = useState({});
   const [dbData, setDbData] = useState({});
 
-  const { loading: loading1, data: data1 } = useQuery(GET_STORE, {
-    variables: { ...storeId },
-  });
+  // const { loading: loading1, data: data1 } = useQuery(GET_STORE, {
+  //   variables: { ...storeId },
+  // });
 
-  const { loading: loading2, data: userQuery } = useQuery(QUERY_ME);
-  const userData = userQuery?.me || {};
+  // const [loading: loading2, data: data2] = useQuery(QUERY_ME);
+  // const userData = data2?.me || {};
+  // console.log("user data", userData);
+
+  const QueryMultiple = () => {
+    const storeRes = useQuery(GET_STORE, { variables: { ...storeId } });
+    const userRes = useQuery(QUERY_ME);
+  };
+
+  const [
+    { loading: loading1, data: data1 },
+    { loading: loading2, data: data2 },
+  ] = QueryMultiple();
+
+  console.log(QueryMultiple());
 
   // useEffect(() => {
   //   fetchYelpReviews();
@@ -39,8 +53,10 @@ export default function SingleStore() {
 
   // without the dependency array, document title rerenders after storedata loads
   useEffect(() => {
+    // console.log(data);
     if (loading1 === false) {
       if (data1) {
+        // console.log(data);
         setStoreData(data1.getStore);
       } else {
         fetchYelpReviews();
@@ -70,9 +86,11 @@ export default function SingleStore() {
       const { data: storeSaved } = await addStore({
         variables: { storeData: { ...dbData } },
       });
+      // console.log(storeSaved.addStore._id);
       const { data: favData } = await favStore({
         variables: { store_id: storeSaved.addStore._id },
       });
+      // console.log(favData);
     } catch (err) {
       console.error(err);
     }
@@ -87,31 +105,29 @@ export default function SingleStore() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-
-    if (!isNaN(value)) {
-      setFormState({ ...formState, [name]: parseInt(value, 10) });
-    } else {
-      setFormState({ ...formState, [name]: value });
-    }
-    console.log(formState);
+    setFormState({ ...formState, [name]: value });
   };
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
+    // console.log("userdata", userData);
+    // console.log("formstate", formState);
     const reviewForm = {
       content: formState.content,
       score: formState.score,
       store_id: storeData.id,
       storeName: storeData.name,
       storeURL: storeData.url,
-      username: userData.username,
-      full_name: userData.full_name,
+      username: "pagetest",
+      full_name: "temp user",
     };
+    // console.log("reviewForm", reviewForm);
 
     try {
       const { data: reviewData } = await addReview({
         variables: { reviewEntry: { ...reviewForm } },
       });
+      // console.log("reviewdata", reviewData);
     } catch (err) {
       console.error(err);
     }
@@ -159,6 +175,7 @@ export default function SingleStore() {
   //   ;<h2>Loading...</h2>
   // }
 
+  // console.log(storeData.name);
   return (
     <>
       {storeData && (
