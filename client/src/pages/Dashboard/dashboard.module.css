@@ -39,7 +39,7 @@
 .reviewSection {
   margin-top: 4rem;
   display: flex;
-  flex-direction: column;
+  flex-direction: row-column;
   gap: 2rem;
 }
 
@@ -132,7 +132,7 @@
   }
 
   .reviewSection {
-    width: 100%;
+    width: 80%;
     flex-direction: row;
     justify-content: space-around;
   }

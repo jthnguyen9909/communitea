@@ -102,9 +102,9 @@ export default function Dashboard() {
                           className={style.welcomer}
                         >
                           <div className={style.cardBody}>
-                            <Link to="/dashboard">View Milk Tea places</Link>
-                            <Link to="/dashboard">View Favorites List</Link>
-                            <Link to="/dashboard">View Reviews</Link>
+                            <Link to="/dashboard">Home</Link>
+                            <Link to="/favorites">View My Favorite Stores</Link>
+                            <Link to="/dashboard">View My Reviews</Link>
                           </div>
                         </Card>
                       </article>

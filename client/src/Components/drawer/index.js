@@ -38,11 +38,6 @@ export default function DrawerComp() {
             Dashboard
           </Link>
         </div>
-        <div>
-          <Link className={style.drawer} to={"/aboutus"}>
-            About Us
-          </Link>
-        </div>
         {Auth.loggedIn() ? (
           <div>
             <Link className={style.drawer} to={"/"} onClick={Auth.logout}>
