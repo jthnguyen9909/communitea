@@ -2,7 +2,8 @@ import { useState, useEffect } from "react";
 import { useLocation, useParams } from "react-router-dom";
 import FooterComponent from "../../Components/footer/footer";
 import HeaderComponent from "../../Components/header";
-import RecentReviewsContainer from "../../Components/recentReviews/recentReviewsContainer";
+import ReviewsContainer from "../../Components/reviews/reviewsContainer";
+import YelpReviewsContainer from "../../Components/yelpReviews/yelpReviewsContainer";
 import { StarOutlined } from "@ant-design/icons";
 import style from "./singleStore.module.css";
 import { useQuery, useMutation } from "@apollo/client";
@@ -20,13 +21,16 @@ export default function SingleStore() {
 
   // this is the query used to retrieve a store from db if needed
 
+  const [siteReviews, setSiteReviews] = useState({});
   const [reviews, setReviews] = useState({});
   const [storeData, setStoreData] = useState({});
   const [dbData, setDbData] = useState({});
 
-  const { loading: loading1, data: data1 } = useQuery(GET_STORE, {
-    variables: { ...storeId },
+  const { loading: loading1, data: storeQuery } = useQuery(GET_STORE, {
+    // variables: { ...storeID },
+    variables: { storeId: storeID },
   });
+  // const storeQueryData = storeQuery || {};
 
   const { loading: loading2, data: userQuery } = useQuery(QUERY_ME);
   const userData = userQuery?.me || {};
@@ -38,17 +42,36 @@ export default function SingleStore() {
   // }, []);
 
   // without the dependency array, document title rerenders after storedata loads
+  // useEffect(() => {
+  //   if (loading1 === false) {
+  //     if (storeQuery) {
+  //       setStoreData(storeQuery.getStore);
+  //       setSiteReviews(storeData.reviews);
+  //     } else {
+  //       fetchYelpReviews();
+  //       fetchStoreDetails();
+  //     }
+  //   }
+  //   document.title = `CommuniTEA - ${storeData?.name}`;
+  // }, [loading1, storeQuery, storeData]);
+
   useEffect(() => {
     if (loading1 === false) {
-      if (data1) {
-        setStoreData(data1.getStore);
+      if (storeQuery) {
+        setStoreData(storeQuery.getStore);
+        setSiteReviews(storeData.reviews);
       } else {
         fetchYelpReviews();
         fetchStoreDetails();
       }
+      fetchYelpReviews();
     }
     document.title = `CommuniTEA - ${storeData?.name}`;
-  }, [loading1, data1]);
+  }, [loading1, storeQuery, storeData]);
+
+  const testfunction = () => {
+    console.log("test", siteReviews);
+  };
 
   // useEffect(() => {
   //   if (!storeData) {
@@ -220,7 +243,15 @@ export default function SingleStore() {
                 </section>
                 <section className={style.reviewsContainer}>
                   {storeData && (
-                    <RecentReviewsContainer
+                    <ReviewsContainer
+                      reviews={siteReviews}
+                      storeData={storeData}
+                    />
+                  )}
+                </section>
+                <section className={style.reviewsContainer}>
+                  {storeData && (
+                    <YelpReviewsContainer
                       reviews={reviews}
                       storeData={storeData}
                     />
@@ -262,6 +293,7 @@ export default function SingleStore() {
                 </form>
               </div>
             </div>
+            <Button onClick={testfunction}></Button>
           </main>
           <FooterComponent />
         </>

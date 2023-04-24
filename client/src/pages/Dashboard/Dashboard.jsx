@@ -4,7 +4,7 @@ import { QUERY_ME } from "../../utils/queries";
 import { useQuery } from "@apollo/client";
 import Auth from "../../utils/auth";
 
-import RecentReviewsContainer from "../../Components/recentReviews/recentReviewsContainer";
+import YelpReviewsContainer from "../../Components/yelpReviews/yelpReviewsContainer";
 import FavoritesContainer from "../../Components/favoritesList/favoritesListContainer";
 import SearchResults from "../../Components/searchResults/searchResults";
 import FooterComponent from "../../Components/footer/footer";
@@ -140,7 +140,7 @@ export default function Dashboard() {
                     {/* displays the user's favorites list  */}
                     <section className={style.reviewSection}>
                       <FavoritesContainer favStores={userData.savedStores} />
-                      <RecentReviewsContainer reviews={userData.reviews} />
+                      <YelpReviewsContainer reviews={userData.reviews} />
                     </section>
                   </>
                 ) : (

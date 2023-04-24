@@ -4,7 +4,7 @@ import { StarOutlined } from "@ant-design/icons";
 import style from "./reviewsList.module.css";
 import formatDate from "../../utils/formatDate";
 
-export default function SingleItem({ reviews }) {
+export default function SingleReview({ reviews }) {
   const onChange = (currentSlide) => {
     console.log(currentSlide);
   };
@@ -13,17 +13,19 @@ export default function SingleItem({ reviews }) {
     <div className={style.singleItemContainer}>
       <Carousel afterChange={onChange}>
         {reviews ? (
-          reviews?.reviews?.map((item, key) => (
+          reviews &&
+          reviews.map &&
+          reviews.map((item, key) => (
             <div key={key} style={contentStyle}>
               <article className={style.listItemContainer}>
                 <p className={style.rating}>
-                  {item.rating} <StarOutlined />
+                  {item.score} <StarOutlined />
                 </p>
                 <div className={style.containerRow}>
-                  <h3>"{item.text}"</h3>
+                  <h3>"{item.content}"</h3>
                 </div>
                 <p>
-                  - {item.user.name} {formatDate(item.time_created)}
+                  - {item.username} {item.createdAt}
                 </p>
               </article>
             </div>

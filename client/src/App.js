@@ -10,7 +10,6 @@ import "./App.css";
 import Home from "./pages/Home";
 import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
-import AboutUs from "./pages/AboutUs";
 import Signup from "./pages/Signup";
 import SingleStore from "./pages/SingleStore/singleStore";
 
@@ -47,7 +46,6 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/logout" element={<Home />} />
-            <Route path="/aboutus" element={<AboutUs />} />
           </Routes>
         </div>
       </Router>

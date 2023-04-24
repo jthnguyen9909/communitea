@@ -1,0 +1,40 @@
+.recentReviewsContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.recentReviewsContainer>h2 {
+    margin-left: 2rem;
+}
+
+.singleItemContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    width: 24rem;
+}
+
+.listItemContainer {
+    background-color: rgb(241, 241, 241);
+    padding: 2rem;
+    border-radius: 6px;
+    width: 24rem;
+}
+
+.containerRow {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 2rem;
+}
+
+.rating {
+    font-size: 1rem;
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
