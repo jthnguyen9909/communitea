@@ -193,7 +193,11 @@ export default function SingleStore() {
             <div className={style.contentWrapper}>
               <header className={style.header}>
                 <h1>
-                  <a href={storeData.url || storeData.yelpURL} target="_blank">
+                  <a
+                    href={storeData.url || storeData.yelpURL}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
                     {storeData.name}
                   </a>
                 </h1>
@@ -201,7 +205,12 @@ export default function SingleStore() {
               <section>
                 <div className={style.photoContainer}>
                   {storeData?.photos?.map((photo, key) => (
-                    <img key={key} src={photo} className={style.image} />
+                    <img
+                      key={key}
+                      src={photo}
+                      className={style.image}
+                      alt={key}
+                    />
                   ))}
                 </div>
               </section>
