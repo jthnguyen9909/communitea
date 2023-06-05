@@ -1,7 +1,7 @@
 # CommuniTEA
 
 ![Screenshot of web app](./client/src/assets/images/communiTEA.png)
-[CommuniTEA Link](https://tranquil-plains-63846.herokuapp.com/)
+[CommuniTEA Link](https://ancient-hollows-48293.herokuapp.com/)
 ## Description
 
 This MERN stack web app lets users browse a wide selection of delicious milk tea businesses where they can view information about specific Milk Tea stores.
@@ -41,7 +41,7 @@ Create a free account and get started today!
 
 ## Usage
 
-Deployed application: https://tranquil-plains-63846.herokuapp.com/
+Deployed application: https://ancient-hollows-48293.herokuapp.com/
 
 ```
 Register or Log in
