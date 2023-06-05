@@ -49,17 +49,6 @@ Enter a location (city, state, zip code, etc...) to search nearby Milk Tea Place
 Click into a store and click the favorite store button to add the store to the database as well as you favorites list.
 ```
 
-## Contributors
-
-[Stephanie Tseng](https://github.com/wytseng)
-
-[Johnathan Nguyen](https://github.com/jthnguyen9909)
-
-[Darius Garcia](https://github.com/dariusgarcia/)
-
-[Justin Chen](https://github.com/JustinCChen)
-
-[Japbir Chhina](https://github.com/japchhina)
 
 ## Installation
 
